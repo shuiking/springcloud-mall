@@ -9,6 +9,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
 
     <modules>
         <module>cloud-order</module>
@@ -17,8 +24,14 @@
         <module>cloud-product</module>
         <module>cloud-member</module>
         <module>cloud-ware</module>
+        <module>cloud-gateway</module>
         <module>renren-fast</module>
         <module>renren-generator</module>
+        <module>cloud-third-party</module>
+        <module>cloud-find</module>
+        <module>cloud-auth</module>
+        <module>cloud-cart</module>
+        <module>cloud-skill</module>
     </modules>
 
     <!--  统一管理jar的版本-->
@@ -26,6 +39,9 @@
         <project.built.sourceEncodeing>UTF-8</project.built.sourceEncodeing>
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <junit.version>4.12</junit.version>
         <lombok.version>1.18.10</lombok.version>
         <log4j.version>1.2.17</log4j.version>
@@ -35,12 +51,50 @@
         <myvatis-plus.version>3.4.1</myvatis-plus.version>
         <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
         <druid-spring-boot.version>1.2.8</druid-spring-boot.version>
+        <elasticsearch.version>7.6.2</elasticsearch.version>
+        <redis.version>2.6.1</redis.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 
     <!--子模块继承之后，提供作用，稳定版本+子module不用写groupId和version-->
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.shiro</groupId>
@@ -110,7 +164,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -119,7 +173,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR1</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <!-- import 依赖范围表示将 spring-cloud-dependencies 包中的依赖信息导入 -->
                 <scope>import</scope>
@@ -129,7 +183,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.1.0.RELEASE</version>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -142,7 +196,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.12.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
@@ -150,4 +204,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

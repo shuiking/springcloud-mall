@@ -1,0 +1,22 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: cloud-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  jackson:
+    date-format: yy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: true
+  mvc:
+    static-path-pattern: /static/**
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000ms
+    expire: 400
+    connect-timeout: 5000ms
+    client-type: lettuce

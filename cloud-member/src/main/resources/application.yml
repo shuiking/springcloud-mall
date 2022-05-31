@@ -1,0 +1,34 @@
+server:
+  port: 8000
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/mall_ums?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 86912148k
+  application:
+    name: cloud-member
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+#reids配置
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 5000ms
+    expire: 400
+    connect-timeout: 5000ms
+    client-type: lettuce
+
+mybatis-plus:
+  global-config:
+#    开启前缀扫描
+    db-config:
+      table-prefix: t_
+#      开启id自增,关闭雪花算法
+      id-type: auto

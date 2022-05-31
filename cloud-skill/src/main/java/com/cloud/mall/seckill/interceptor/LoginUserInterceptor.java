@@ -1,0 +1,40 @@
+package com.cloud.mall.seckill.interceptor;
+import com.cloud.common.constant.AuthServerConstant;
+import com.cloud.common.vo.MemberResponseVo;
+import org.apache.shiro.util.AntPathMatcher;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@Component
+public class LoginUserInterceptor implements HandlerInterceptor {
+    public static ThreadLocal<MemberResponseVo> loginUser = new ThreadLocal<>();
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
+        MemberResponseVo memberResponseVo = (MemberResponseVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
+        if (memberResponseVo != null) {
+            loginUser.set(memberResponseVo);
+            return true;
+        }else {
+            session.setAttribute("msg","请先登录");
+            response.sendRedirect("http://auth.cloudmall.com:9002/login.html");
+            return false;
+        }
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
+}

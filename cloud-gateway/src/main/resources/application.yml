@@ -1,0 +1,92 @@
+server:
+  port: 60
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: product_routh
+          uri: lb://cloud-product
+          predicates:
+            - Path=/api/cloudproduct/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: coupon_routh
+          uri: lb://cloud-coupon
+          predicates:
+            - Path=/api/cloudcoupon/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: third_party_routh
+          uri: lb://cloud-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty(?<segment>.*),/$\{segment}
+
+        - id: member_routh
+          uri: lb://cloud-member
+          predicates:
+            - Path=/api/cloudmember/**
+          filters:
+            - RewritePath=/api(?<segment>.*),/$\{segment}
+
+        - id: ware_route
+          uri: lb://cloud-ware
+          predicates:
+            - Path=/api/cloudware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: admin_routh
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+
+        - id: mall_host_routh
+          uri: lb://cloud-product
+          predicates:
+            - Host=cloudmall.com,item.cloudmall.com
+
+        - id: mall_find_routh
+          uri: lb://cloud-find
+          predicates:
+            - Host=search.cloudmall.com
+
+        - id: mall_auth_routh
+          uri: lb://cloud-auth
+          predicates:
+            - Host=auth.cloudmall.com
+
+
+        - id: mall_cart_routh
+          uri: lb://cloud-cart
+          predicates:
+            - Host=cart.cloudmall.com
+
+        - id: mall_order_routh
+          uri: lb://cloud-order
+          predicates:
+            - Host=order.cloudmall.com
+
+        - id: mall_member_routh
+          uri: lb://cloud-member
+          predicates:
+            - Host=member.cloudmall.com
+
+
+        - id: mall_seckill_routh
+          uri: lb://cloud-seckill
+          predicates:
+            - Host=seckill.cloudmall.com

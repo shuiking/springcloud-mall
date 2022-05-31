@@ -1,0 +1,25 @@
+server:
+  port: 7010
+spring:
+  application:
+    name: cloud-third-party
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alicloud:
+      access-key: LTAI5tSYvsxMd9ieeH8gyk28
+      secret-key: 4RvNayru92zzliIN1AQ11iC5jXyyJk
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucket: cloud-yulei
+
+#reids配置
+#  redis:
+#    host: 192.168.200.130
+#    port: 6379
+#    password:
+#    timeout: 5000ms
+#    expire: 400
+#    connect-timeout: 5000ms
+#    client-type: lettuce
