@@ -3,6 +3,11 @@
 
 ## 组织结构
 springcloud-mall
+├── analyze -- ai智能分析模块  
+├── backend -- 用户信息管理系统服务  
+├── common -- 工具类及通用代码模块  
+├── gateway -- 基于Spring Cloud Gateway的微服务API网关服务
+
 ├── cloud-common -- 工具类及通用代码
 ├── renren-generator -- 人人开源项目的代码生成器
 ├── cloud-auth -- 认证中心（社交登录、OAuth2.0）
