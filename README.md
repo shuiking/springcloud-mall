@@ -15,4 +15,4 @@ springcloud-mall
 ├── cloud-seckill -- 秒杀服务
 ├── cloud-third-party -- 第三方服务（对象存储、短信）
 ├── cloud-ware -- 仓储服务
-└── cloud-member -- 会员服务
+├── cloud-member -- 会员服务
