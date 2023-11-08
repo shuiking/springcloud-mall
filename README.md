@@ -15,3 +15,21 @@ springcloud-mall
 ├── cloud-third-party -- 第三方服务（对象存储、短信)  
 ├── cloud-ware -- 仓储服务  
 ├── cloud-member -- 会员服务  
+
+## 技术选型
+| 技术 | 说明 |
+| --- | --- |
+| SpringBoot | 容器+MVC框架 |
+| SpringCloud | 微服务架构 |
+| SpringCloudAlibaba | 一系列组件 |
+| MyBatis-Plus | ORM框架 |
+| renren-generator | 人人开源项目的代码生成器 |
+| Elasticsearch | 搜索引擎 |
+| RabbitMQ | 消息队列 |
+| Springsession | 分布式缓存 |
+| Redisson | 分布式锁 |
+| Docker | 应用容器引擎 |
+| OSS | 对象云存储 |
+
+## 系统架构图
+![image](https://github.com/shuiking/springcloud-mall/assets/86963048/143f0847-5430-4395-9dde-e9ba1b02d4c2)
